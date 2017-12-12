@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-$pdo = new PDO('sqlite:database.db');
+require __DIR__.'/autoload.php';
 
 if (isset($_POST['user'], $_POST['password'], $_POST['email'])) {
   $user = $_POST['user'];
