@@ -1,1 +1,7 @@
-/* In this file you can add your custom styles. */
+.postImg{
+  width: 20%;
+}
+
+body{
+  background-color: blue;
+}

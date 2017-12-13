@@ -31,10 +31,10 @@ if (isset($_POST['bio'])) {
   $statement->execute();
 }
 if (isset($_POST['image'])) {
-  $image = filter_var($_POST['image']);
+  $image = $_POST['image'];
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('UPDATE users SET IMAGE = :image WHERE ID = :id');
-  $statement->bindParam(':bio', $image, PDO::PARAM_STR);
+  $statement->bindParam(':image', $image, PDO::PARAM_STR);
   $statement->bindParam(':id', $id, PDO::PARAM_STR);
   $statement->execute();
 }

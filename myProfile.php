@@ -8,6 +8,10 @@
 // $statement->execute();
 // $user = $statement->fetch(PDO::FETCH_ASSOC);
 
+  $info = userInfo($pdo);
+
+  echo $info['BIO'];
+?><img src=" <?php echo $info['IMAGE'];?>" alt=""> <?php 
 ?>
 
 
