@@ -1,34 +1,34 @@
-<?php
-declare(strict_types=1);
-$pdo = new PDO('sqlite:database.db');
+<?php require __DIR__.'/views/header.php';
+?>
 
+<article>
+    <h1>Login</h1>
 
-session_start();
+    <form action="app/auth/login.php" method="post">
+        <div class="form-group">
+          <?php   if (isset($_SESSION['wrong'])) {
+              echo "EMAIL DOESNT EXIST";
+              var_dump($_SESSION['wrong']);
+            } ?>
+            <br>
+            <label for="email">Email</label>
+            <input class="form-control" type="email" name="email" required>
+            <small class="form-text text-muted">Please provide the your email address.</small>
+        </div><!-- /form-group -->
 
+        <div class="form-group">
+          <?php  if (isset($_SESSION['pass'])) {
+              echo "Wrong";
+              var_dump($_SESSION['pass']);
 
-if (isset($_POST['email'], $_POST['password'])) {
-   $email = filter_var($_POST['email']);
-   $password = filter_var($_POST['password']);
+          } ?>
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" required>
+            <small class="form-text text-muted">Please provide the your password (passphrase).</small>
+        </div><!-- /form-group -->
 
-   $allUsers = $pdo->prepare('SELECT * FROM USERS where MAIL = :email');
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</article>
 
-   $allUsers->bindParam(':email', $email, PDO::PARAM_STR);
-
-   $allUsers->execute();
-
-   $checkExist = $allUsers->fetch(PDO::FETCH_ASSOC);
-
-   if (!$checkExist) {
-     echo "user doesnt exist";
-
-   }
-
-  if (password_verify($password, $checkExist["PASSWORD"]))  {
-
-    $_SESSION['users'] = [
-         'username' => $user['username'],
-         'email' => $user['email'],
-         'ID' => $user['ID']
-       ];
-  }
-  }
+<?php require __DIR__.'/views/footer.php'; ?>
