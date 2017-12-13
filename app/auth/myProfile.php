@@ -30,11 +30,14 @@ if (isset($_POST['bio'])) {
   $statement->bindParam(':id', $id, PDO::PARAM_STR);
   $statement->execute();
 }
-if (isset($_POST['image'])) {
-  $image = $_POST['image'];
+if (isset($_FILES['image'])) {
+  $avatar = $_FILES['image'];
+  $name = $avatar['name'];
+
+  move_uploaded_file($avatar['tmp_name'],"../../images/".$name);
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('UPDATE users SET IMAGE = :image WHERE ID = :id');
-  $statement->bindParam(':image', $image, PDO::PARAM_STR);
+  $statement->bindParam(':image', $name, PDO::PARAM_STR);
   $statement->bindParam(':id', $id, PDO::PARAM_STR);
   $statement->execute();
 }

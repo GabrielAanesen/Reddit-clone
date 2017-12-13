@@ -15,4 +15,24 @@ if (isset($_POST['headline'],$_POST['link'])) {
   $statement->bindParam(':link', $link, PDO::PARAM_STR);
   $statement->execute();
 }
+
+if (isset($_POST['edit'])) {
+  $newHead = $_POST['edit'];
+  $id = $_POST['postId'];
+
+  $statement = $pdo->prepare('UPDATE POSTS SET headline = :newHead WHERE post_id = :id');
+  $statement->bindParam(':newHead', $newHead, PDO::PARAM_STR);
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
+  $statement->execute();
+
+}
+
+if (isset($_POST['postId'])) {
+  $id = $_POST['postId'];
+  $statement = $pdo->prepare('DELETE FROM POSTS WHERE post_id = :id');
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
+  $statement->execute();
+
+}
+
 redirect('/memes.php');

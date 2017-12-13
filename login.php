@@ -12,8 +12,7 @@
             } ?>
             <br>
             <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" required>
-            <small class="form-text text-muted">Please provide the your email address.</small>
+            <input class="form-control" type="email" name="email" placeholder="Enter mail" required>
         </div><!-- /form-group -->
 
         <div class="form-group">
@@ -23,11 +22,10 @@
 
           } ?>
             <label for="password">Password</label>
-            <input class="form-control" type="password" name="password" required>
-            <small class="form-text text-muted">Please provide the your password (passphrase).</small>
+            <input class="form-control" type="password" name="password" placeholder="Enter password" required>
         </div><!-- /form-group -->
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-outline-secondary">Login</button>
     </form>
 </article>
 

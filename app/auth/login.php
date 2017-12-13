@@ -24,7 +24,10 @@ if (isset($_POST['email'], $_POST['password'])) {
       redirect('/login.php');
     }
     if (password_verify($_POST['password'], $user['PASSWORD'])) {
-        unset($user['PASSWORD']);
+      unset($user['PASSWORD']);
+      unset($user['MAIL']);
+      unset($user['IMAGE']);
+      unset($user['BIO']);
         $_SESSION['user'] = $user;
     }
 }

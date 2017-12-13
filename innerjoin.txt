@@ -1,0 +1,1 @@
+select USERNAME, headline from USERS inner join POSTS ON USERS.ID = POSTS.user_id where USERS.ID = 3;

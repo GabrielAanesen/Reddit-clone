@@ -7,11 +7,14 @@
 // $statement->bindParam(':id', $id, PDO::PARAM_STR);
 // $statement->execute();
 // $user = $statement->fetch(PDO::FETCH_ASSOC);
+// foreach ($postArray as $key => $value) {
+//   echo $value['user_id'];
+// }
+$info = userInfo($pdo);
 
-  $info = userInfo($pdo);
+echo $info['BIO'];
+?><img src=" <?php echo "images/".$info['IMAGE']; ?>" alt=""> <?php
 
-  echo $info['BIO'];
-?><img src=" <?php echo $info['IMAGE'];?>" alt=""> <?php 
 ?>
 
 
@@ -47,12 +50,13 @@
         <button type="submit" class="btn btn-primary">Update bio</button>
       </div>
     </form>
-    <form action="app/auth/myProfile.php" method="post">
+    <form action="app/auth/myProfile.php" method="post" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="image">image</label>
-        <input class="form-control" type="text" name="image">
-        <small class="form-text text-muted">Edit your image.</small>
+        <label for="exampleFormControlFile1">image</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept=".jpg, .png">
         <button type="submit" class="btn btn-primary">Update image</button>
+
+        <small class="form-text text-muted">Edit your image.</small>
       </div>
     </form>
   </div>
