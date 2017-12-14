@@ -18,7 +18,6 @@ if (!function_exists('redirect')) {
 }
 
 function userInfo($pdo){
-
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('SELECT * FROM USERS WHERE ID = :id');
   $statement->bindParam(':id', $id, PDO::PARAM_STR);
@@ -27,7 +26,6 @@ function userInfo($pdo){
   unset($user['PASSWORD']);
   unset($user['ID']);
   return $user;
-
 };
 
 function postInfo($pdo){

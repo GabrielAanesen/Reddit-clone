@@ -13,12 +13,7 @@
 $info = userInfo($pdo);
 
 echo $info['BIO'];
-?><img src=" <?php echo "images/".$info['IMAGE']; ?>" alt=""> <?php
-
-?>
-
-
-
+?><img src=" <?php echo "images/".$info['IMAGE']; ?>" alt=""> 
 <p>
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Edit my profile
@@ -55,13 +50,10 @@ echo $info['BIO'];
         <label for="exampleFormControlFile1">image</label>
         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept=".jpg, .png">
         <button type="submit" class="btn btn-primary">Update image</button>
-
         <small class="form-text text-muted">Edit your image.</small>
       </div>
     </form>
   </div>
 </div>
-
-
 
 <?php require __DIR__.'/views/footer.php'; ?>

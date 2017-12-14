@@ -4,6 +4,8 @@ if (isset($_SESSION['MAIL'])) {
   echo "email already exist please pick another one";
 }
 ?>
+<div class="col-md-6 mx-auto">
+<h1>Register</h1>
 
 <form action="app/auth/register.php" method="post">
   <div class="form-group">
@@ -18,5 +20,6 @@ if (isset($_SESSION['MAIL'])) {
 </div>
 <button class="btn btn-outline-secondary" type="submit" name="button">REGISTER</button>
 </form>
+</div>
 
 <?php require __DIR__.'/views/footer.php'; ?>

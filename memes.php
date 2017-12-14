@@ -19,25 +19,20 @@ foreach ($allPosts as $key => $value) {
           </form>
         <form class="" action="app/auth/memes.php" method="post">
           <input type="hidden" name="postId" value=" <?php echo $value['post_id'] ?>">
-          <button class ="btn btn-outline-secondary" type="submit">delete post</button>
+          <button class ="btn btn-outline-secondary" name="delete" type="submit">delete post</button>
         </form>
-
       </div>
-
       <?php
-    } else{
+    } else {
       ?><div class="post"> <img class="postImg" src=" <?php echo $value['link']; ?> " alt=""><?php
       ?><h2><?php echo $value['headline'];?> </h2></div><?php
     }
-  } else{
+  } else {
     ?><div class="post"> <img class="postImg" src=" <?php echo $value['link']; ?> " alt=""><?php
     ?><h2><?php echo $value['headline'];?> </h2></div><?php
-
   }
 }
-
 if (isset($_SESSION['user'])) {
-
   ?>
   <div class="col-m-3 newPost">
   <form action="app/auth/memes.php" method="post">
@@ -50,7 +45,6 @@ if (isset($_SESSION['user'])) {
   <button type="submit" class="btn btn-primary">Submit Post</button>
 </form>
 </div>
-
 <?php
 }
 require __DIR__.'/views/footer.php'; ?>

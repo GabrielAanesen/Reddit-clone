@@ -5,14 +5,12 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 if (isset($_POST['email'])) {
-
   $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('UPDATE users SET MAIL = :email WHERE ID = :id');
   $statement->bindParam(':email', $email, PDO::PARAM_STR);
   $statement->bindParam(':id', $id, PDO::PARAM_STR);
   $statement->execute();
-  // $_SESSION['user']['MAIL'] = $email;
 }
 if (isset($_POST['username'])) {
   $user = filter_var($_POST['username']);
