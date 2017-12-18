@@ -8,6 +8,10 @@ if (isset($_SESSION['user'])) {
   </div>
 <?php
 }
+if (!isset($_SESSION['user'])) {
+  ?><h2>Want to contribute?</h2> <?php
+  ?><a href="register.php"> <button class="btn btn-outline-secondary" type="button" name="button">Register!</button> </a><?php
+}
 $statement = $pdo->query('SELECT USERNAME, headline, link, post_date, post_id from USERS inner join POSTS ON USERS.ID = POSTS.user_id');
 $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 foreach ($allPosts as $key => $value) {

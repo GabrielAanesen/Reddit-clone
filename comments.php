@@ -27,4 +27,10 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
    <?php
  }
 }
+if (!isset($_SESSION['user'])){
+  ?><h3>Want to comment?</h3> <?php
+  ?><a href="register.php"> <button class="btn btn-outline-secondary" type="button" name="button">Register!</button> </a><?php
+
+}
+
 require __DIR__.'/views/footer.php'; ?>

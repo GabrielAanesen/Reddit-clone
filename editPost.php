@@ -15,9 +15,9 @@ if ($post['user_id'] === $_SESSION['user']['ID']) {
       <button class ="btn btn-outline-secondary" type="submit" name="button">edit</button>
     </div>
   </form>
-  <form class="" action="app/auth/memes.php" method="post">
+  <form class="" action="app/auth/editPost.php" method="post">
     <input type="hidden" name="postId" value=" <?php echo $post['post_id'] ?>">
-    <button class ="btn btn-outline-dark" name="delete" type="submit">delete post</button>
+    <button class="btn btn-outline-dark" onclick="return confirm('Are you sure you want to delete the post?')" name="delete" type="submit">delete post</button>
   </form>
   <?php
 }
