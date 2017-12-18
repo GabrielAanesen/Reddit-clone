@@ -9,7 +9,7 @@ if (isset($_POST['email'])) {
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('UPDATE users SET MAIL = :email WHERE ID = :id');
   $statement->bindParam(':email', $email, PDO::PARAM_STR);
-  $statement->bindParam(':id', $id, PDO::PARAM_STR);
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
   $statement->execute();
 }
 if (isset($_POST['username'])) {
@@ -17,7 +17,7 @@ if (isset($_POST['username'])) {
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('UPDATE users SET USERNAME = :user WHERE ID = :id');
   $statement->bindParam(':user', $user, PDO::PARAM_STR);
-  $statement->bindParam(':id', $id, PDO::PARAM_STR);
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
   $statement->execute();
 }
 if (isset($_POST['bio'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['bio'])) {
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('UPDATE users SET BIO = :bio WHERE ID = :id');
   $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
-  $statement->bindParam(':id', $id, PDO::PARAM_STR);
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
   $statement->execute();
 }
 if (isset($_FILES['image'])) {
@@ -36,7 +36,7 @@ if (isset($_FILES['image'])) {
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('UPDATE users SET IMAGE = :image WHERE ID = :id');
   $statement->bindParam(':image', $name, PDO::PARAM_STR);
-  $statement->bindParam(':id', $id, PDO::PARAM_STR);
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
   $statement->execute();
 }
 redirect('/myProfile.php');
