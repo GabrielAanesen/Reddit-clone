@@ -1,1 +1,4 @@
 select USERNAME, comment from USERS inner join COMMENTS ON USERS.ID = COMMENTS.user_id;
+
+
+select USERNAME, headline, link, post_date from USERS inner join POSTS ON USERS.ID = POSTS.user_id;

@@ -5,7 +5,7 @@ require __DIR__.'/../autoload.php';
 
 if (isset($_POST['user'], $_POST['password'], $_POST['email'])) {
   unset($_SESSION['MAIL']);
-  $user = $_POST['user'];
+  $user = filter_var($_POST['user'], FILTER_SANITIZE_STRING);
   $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 

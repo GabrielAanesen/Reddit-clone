@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 if (isset($_POST['comment'])) {
-  $comment = filter_var($_POST['comment']);
+  $comment = filter_var($_POST['comment'], FILTER_SANITIZE_STRING);
   $id = $_SESSION['user']['ID'];
   $postId = filter_var($_POST['postId']);
   $date = date("F j, Y, g:i a");
@@ -17,4 +17,4 @@ if (isset($_POST['comment'])) {
   $statement->execute();
 
 }
-redirect('/memes.php');
+redirect("/comments.php?id=$postId");
