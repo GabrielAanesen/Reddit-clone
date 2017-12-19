@@ -2,13 +2,14 @@
 require __DIR__.'/views/header.php';
 $postId = $_GET['id'];
 $statement = $pdo->query("SELECT * FROM POSTS WHERE post_id = '$postId' ");
-$commentTable = $pdo->query("SELECT USERNAME, comment, comment_date FROM USERS INNER JOIN COMMENTS ON USERS.ID = COMMENTS.user_id WHERE post_id = '$postId'; ");
+$commentTable = $pdo->query("SELECT USERNAME, comment, comment_date FROM USERS INNER JOIN COMMENTS ON USERS.ID = COMMENTS.user_id WHERE post_id = '$postId' ORDER BY comment_id DESC");
 $comment = $commentTable->fetchAll(PDO::FETCH_ASSOC);
 $post = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 <div class="col-xs-4">
-  <img class="postImg" src=" <?php echo $post['link']; ?> ">
-  <H2><?php echo $post['headline'];?> </H2>
+  <H2><?php echo $post['title'];?> </H2>
+  <a href=" <?php echo $post['link']; ?> "> <?php echo $post['link']; ?> <a/> <br>
+  <p><?php echo $post['description'] ?></p>
 <?php
  foreach ($comment as $key => $value) {
    echo $value['USERNAME'].": ".$value['comment'].$value['comment_date']."<br>";

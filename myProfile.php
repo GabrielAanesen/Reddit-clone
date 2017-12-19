@@ -12,17 +12,19 @@ if (!$info['BIO']) {
     echo "Please write something about yourself.";
 } ?>
 
-<img class="img-thumbnail" src=" <?php echo "images/".$info['IMAGE']; ?>">
 <?php if (!$info['IMAGE']) {
   ?> <img class="img-thumbnail" src="https://s3.amazonaws.com/wll-community-production/images/no-avatar.png" alt=""> <?php
   echo "Upload profile picture";
+} else {
+  ?> <img class="img-thumbnail" src=" <?php echo "images/".$info['IMAGE']; ?>">
+<?php
 }
 ?>
   <h2>Your posts</h2>
 <?php
 foreach ($myPosts2 as $key => $value) {
-  ?><div class="post"><img class="allPostImg" src=" <?php echo $value['link']; ?> "><?php
-  ?> <a href="comments.php?id=<?php echo $value['post_id'] ?>"> <h2><?php echo $value['headline'];?> </h2> </a></div><?php
+  ?><div class="post"><a href " <?php echo $value['link']; ?> "> <?php echo $value['link']; ?> <a/><?php
+  ?> <a href="comments.php?id=<?php echo $value['post_id'] ?>"> <h2><?php echo $value['title'];?> </h2> </a></div><?php
 } ?>
 <p>
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
