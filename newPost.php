@@ -14,7 +14,6 @@
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Submit Post</button>
-
 </form>
 
 <?php require __DIR__.'/views/footer.php'; ?>

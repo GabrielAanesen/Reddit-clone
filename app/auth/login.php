@@ -25,4 +25,4 @@ if (isset($_POST['email'], $_POST['password'])) {
         $_SESSION['user'] = $user;
     }
 }
-redirect('/');
+redirect('/myProfile.php');

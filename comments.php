@@ -11,9 +11,15 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
   <div class="card-body">
     <h4 class="card-title"><?php echo $post['title'];?></h4>
     <hr>
-    <p class="card-text"><?php echo $post['description'] ?>.</p>
+    <p class="card-text"><?php echo $post['description'] ?></p>
     <hr>
     <a href=" <?php echo $post['link']; ?> "> <?php echo $post['link']; ?> <a/>
+  <?php  if (isset($_SESSION['user'])) {
+    if ($post['user_id'] === $_SESSION['user']['ID']) { ?>
+        <a href="editPost.php?id= <?php echo $postId ?> "> <button class="btn btn-outline-secondary" type="submit" name="id" value="<?php echo $post['post_id'] ?>" >EDIT</button> </a>
+      <?php
+    }
+  } ?>
   </div>
 </div>
 <div class="detailBox">
@@ -27,9 +33,7 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
     <ul class="commentList">
 <?php foreach ($comment as $key => $value) { ?>
       <li>
-        <div class="">
-          <p> <?php echo $value['USERNAME']; ?></p>
-        </div>
+        <p> <?php echo $value['USERNAME']; ?></p>
         <div class="commenterImage">
           <img src="<?php
           if ($value['IMAGE']){
@@ -52,12 +56,7 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
     <textarea  type="text" name="comment" value=""> </textarea>
     <button class ="btn btn-outline-secondary" type="submit" name="button">Post comment</button>
   </form>
-<?php
-  if ($post['user_id'] === $_SESSION['user']['ID']) { ?>
-    <a href="editPost.php?id= <?php echo $postId ?> "> <button class="btn btn-outline-secondary" type="submit" name="id" value="<?php echo $value['post_id'] ?>" >EDIT</button> </a>
-    <?php
-  }
-} ?>
+<?php } ?>
   </div>
 </div>
 
