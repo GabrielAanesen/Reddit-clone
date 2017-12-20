@@ -19,12 +19,12 @@ if (!isset($_SESSION['user'])) { ?>
 </div>
 <?php
 }
-$statement = $pdo->query('SELECT USERNAME, title, link, post_date, post_id from USERS inner join POSTS ON USERS.ID = POSTS.user_id');
+$statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id from USERS inner join POSTS ON USERS.ID = POSTS.user_id ORDER BY post_id DESC');
 $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 foreach ($allPosts as $key => $value) { ?>
 <div class="card text-center">
   <div class="card-header">
-    Posted by:  <?php echo $value['USERNAME'] ?>
+    Posted by: <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><?php echo $value['USERNAME'] ?></a>
   </div>
   <div class="card-body">
     <h4 class="card-title"><?php echo $value['title'];?></h4>

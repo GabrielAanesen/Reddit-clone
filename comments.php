@@ -2,7 +2,7 @@
 require __DIR__.'/views/header.php';
 $postId = $_GET['id'];
 $statement = $pdo->query("SELECT * FROM POSTS WHERE post_id = '$postId' ");
-$commentTable = $pdo->query("SELECT USERNAME, IMAGE , comment, comment_date FROM USERS INNER JOIN COMMENTS ON USERS.ID = COMMENTS.user_id WHERE post_id = '$postId' ORDER BY comment_id DESC");
+$commentTable = $pdo->query("SELECT USERNAME, ID, IMAGE , comment, comment_date FROM USERS INNER JOIN COMMENTS ON USERS.ID = COMMENTS.user_id WHERE post_id = '$postId' ORDER BY comment_id DESC");
 $comment = $commentTable->fetchAll(PDO::FETCH_ASSOC);
 $post = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -33,7 +33,7 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
     <ul class="commentList">
 <?php foreach ($comment as $key => $value) { ?>
       <li>
-        <p> <?php echo $value['USERNAME']; ?></p>
+      <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><p><?php echo $value['USERNAME']; ?></p></a>
         <div class="commenterImage">
           <img src="<?php
           if ($value['IMAGE']){
