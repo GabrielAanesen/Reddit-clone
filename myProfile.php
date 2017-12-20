@@ -45,25 +45,19 @@ foreach ($myPosts2 as $key => $value) {
     <form action="app/auth/myProfile.php" method="post">
       <div class="form-group">
         <label for="email">Email</label>
-        <input class="form-control" type="email" name="email" placeholder="">
+        <input class="form-control" type="email" name="email" value="<?php echo $info['MAIL'] ?>">
         <small class="form-text text-muted">edit your email.</small>
       </div>
-      <button type="submit" class="btn btn-primary">Update email</button>
-    </form>
-    <form action="app/auth/myProfile.php" method="post">
       <div class="form-group">
         <label for="username">username</label>
-        <input class="form-control" type="text" name="username">
+        <input class="form-control" type="text" name="username" value="<?php echo $info['USERNAME'] ?>" >
         <small class="form-text text-muted">Edit your username.</small>
-        <button type="submit" class="btn btn-primary">Update username</button>
       </div>
-    </form>
-    <form action="app/auth/myProfile.php" method="post">
       <div class="form-group">
         <label for="bio">bio</label>
-        <input class="form-control" type="text" name="bio">
+        <input class="form-control" type="textarea" name="bio" value="<?php echo $info['BIO'] ?>">
         <small class="form-text text-muted">Edit your bio.</small>
-        <button type="submit" class="btn btn-primary">Update bio</button>
+        <button type="submit" class="btn btn-primary">Update Settings</button>
       </div>
     </form>
     <form action="app/auth/myProfile.php" method="post" enctype="multipart/form-data">

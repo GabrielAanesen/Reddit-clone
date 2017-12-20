@@ -140,3 +140,7 @@
   position: relative;
   top: -3px;
 }
+
+.vote{
+  width: 5%;
+}

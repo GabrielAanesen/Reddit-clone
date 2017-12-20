@@ -27,10 +27,14 @@ foreach ($allPosts as $key => $value) { ?>
     Posted by: <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><?php echo $value['USERNAME'] ?></a>
   </div>
   <div class="card-body">
+    <div class="">
+      <img class="vote voteUp" src="images/upvote.svg" data-rating="1">
+      <img class="vote voteDown" src="images/downvote.svg" data-rating="-1">
+    </div>
     <h4 class="card-title"><?php echo $value['title'];?></h4>
-    <p class="card-text"><a href=" <?php echo $value['link']; ?> "> <?php echo $value['link']; ?> </a></p>
+    <p class="card-text"><a href="<?php echo $value['link']; ?> "><?php echo $value['link']; ?></a></p>
     <form class="" action="comments.php" method="GET">
-      <a href="comments.php"><button class="btn btn-primary" type="submit" name="id" value="<?php echo $value['post_id'] ?>" >Comment</button></a>
+      <a href="comments.php"><button class="btn btn-primary" type="submit" name="id" value="<?php echo $value['post_id'] ?>">Comment</button></a>
     </form>
   </div>
   <div class="card-footer text-muted">
