@@ -5,7 +5,8 @@ $id = $_SESSION['user']['ID'];
 $myPosts = $pdo->query("SELECT * FROM POSTS WHERE user_id = '$id' ");
 $myPosts2 = $myPosts->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<div class="row">
+<div class="col-md-6">
 <div class="card" style="width: 20rem;">
   <?php if (!$info['IMAGE']) {
     ?> <img class="card-img-top" src="https://s3.amazonaws.com/wll-community-production/images/no-avatar.png" alt=""> <?php
@@ -20,6 +21,9 @@ $myPosts2 = $myPosts->fetchAll(PDO::FETCH_ASSOC);
     } ?></p>
   </div>
 </div>
+</div>
+<div class="col-md-6">
+
 <div class="activity-feed">
   <h2>My posts</h2>
 <?php
@@ -31,7 +35,7 @@ foreach ($myPosts2 as $key => $value) {
   </div>
 
 <?php } ?>
-<p>
+<p class="mt-5">
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Edit settings
   </button>
@@ -71,6 +75,7 @@ foreach ($myPosts2 as $key => $value) {
       </div>
     </form>
   </div>
+</div>
 </div>
 </div>
 

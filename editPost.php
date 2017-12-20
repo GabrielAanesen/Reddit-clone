@@ -9,10 +9,18 @@ if ($post['user_id'] === $_SESSION['user']['ID']) {
   <div class="form-group">
   <form class="" action="app/auth/editPost.php" method="post">
     <label for="edit"> <p>Edit Title</p></label>
-    <input class="form-control" type="text" name="edit">
+    <input class="form-control" type="text" name="editTitle">
     <input type="hidden" name="postId" value=" <?php echo $post['post_id'] ?>">
     <button class ="btn btn-outline-secondary" type="submit" name="button">edit</button>
   </form>
+</div>
+<div class="form-group">
+<form class="" action="app/auth/editPost.php" method="post">
+  <label for="edit"> <p>Edit description</p></label>
+  <input class="form-control" type="text" name="editDesc">
+  <input type="hidden" name="postId" value=" <?php echo $post['post_id'] ?>">
+  <button class ="btn btn-outline-secondary" type="submit" name="button">edit</button>
+</form>
 </div>
   <div class="form-group">
    <form class="" action="app/auth/editPost.php" method="post">
