@@ -55,7 +55,7 @@ foreach ($myPosts2 as $key => $value) {
       </div>
       <div class="form-group">
         <label for="bio">bio</label>
-        <input class="form-control" type="textarea" name="bio" value="<?php echo $info['BIO'] ?>">
+        <textarea class="form-control" type="text" name="bio" value=""><?php echo $info['BIO'] ?></textarea>
         <small class="form-text text-muted">Edit your bio.</small>
         <button type="submit" class="btn btn-primary">Update Settings</button>
       </div>

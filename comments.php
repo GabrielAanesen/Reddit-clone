@@ -15,8 +15,8 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
     <hr>
     <a href=" <?php echo $post['link']; ?> "> <?php echo $post['link']; ?> <a/>
   <?php  if (isset($_SESSION['user'])) {
-    if ($post['user_id'] === $_SESSION['user']['ID']) { ?>
-        <a href="editPost.php?id= <?php echo $postId ?> "> <button class="btn btn-outline-secondary" type="submit" name="id" value="<?php echo $post['post_id'] ?>" >EDIT</button> </a>
+            if ($post['user_id'] === $_SESSION['user']['ID']) { ?>
+              <a href="editPost.php?id=<?php echo $postId ?> "><button class="btn btn-outline-secondary" type="submit" name="id" value="<?php echo $post['post_id'] ?>" >EDIT</button></a>
       <?php
     }
   } ?>
@@ -53,7 +53,7 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
 <?php  if (isset($_SESSION['user'])) { ?>
   <form class="" action="app/auth/comments.php" method="post">
     <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
-    <textarea  type="text" name="comment" value=""> </textarea>
+    <textarea type="text" name="comment" required></textarea>
     <button class ="btn btn-outline-secondary" type="submit" name="button">Post comment</button>
   </form>
 <?php } ?>
