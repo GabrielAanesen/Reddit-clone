@@ -22,6 +22,17 @@ if (isset($_POST['upvote'])) {
     if ($resultUpVote['vote_dir'] == $voteDir) {
      echo json_encode("nothing");
     }
+    if ($resultUpVote['vote_dir'] == -1) {
+      $neutralDir = 0;
+      $statement = $pdo->prepare("UPDATE Votes
+                                  SET vote_dir = :neutral
+                                  WHERE user_id = :userId
+                                  AND post_id = :postId");
+      $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+      $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
+      $statement->bindParam(':neutral', $neutralDir, PDO::PARAM_INT);
+      $statement->execute();
+    }
     else {
       $statement = $pdo->prepare("UPDATE Votes
                                   SET vote_dir=:vote_dir
@@ -57,9 +68,21 @@ if (isset($_POST['downvote'])) {
 
   $resultDownVote = $statement->fetch(PDO::FETCH_ASSOC);
 
+
   if ($resultDownVote) {
-    if ($resultUpVote['vote_dir'] == $voteDir) {
+    if ($resultDownVote['vote_dir'] == $voteDir) {
      echo json_encode("nothing");
+    }
+    if ($resultDownVote['vote_dir'] == 1) {
+      $neutralDir = 0;
+      $statement = $pdo->prepare("UPDATE Votes
+                                  SET vote_dir = :neutral
+                                  WHERE user_id = :userId
+                                  AND post_id = :postId");
+      $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+      $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
+      $statement->bindParam(':neutral', $neutralDir, PDO::PARAM_INT);
+      $statement->execute();
     }
     else {
       $statement = $pdo->prepare("UPDATE Votes

@@ -29,7 +29,6 @@ Array.from(upvotes).forEach(upvote => {
     .then(voteSum =>{
       const postSum = upvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
-      console.log(voteSum.voteTot);
     })
   })
 });
@@ -59,7 +58,6 @@ Array.from(downvotes).forEach(downvote => {
     .then(voteSum =>{
       const postSum = downvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
-      console.log(voteSum.voteTot);
     })
   })
 });

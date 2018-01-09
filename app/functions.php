@@ -29,6 +29,7 @@ function userInfo($pdo){
 };
 
 $today = date("F j, Y, g:i a");
+
 function voteSum($pdo, $postId){
 $statement = $pdo->prepare("SELECT sum(vote_dir)
                             AS voteTot

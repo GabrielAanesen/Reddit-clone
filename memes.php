@@ -19,7 +19,11 @@ if (!isset($_SESSION['user'])) { ?>
 </div>
 <?php
 }
-$statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id from USERS inner join POSTS ON USERS.ID = POSTS.user_id ORDER BY post_id DESC');
+$statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id
+                          FROM USERS
+                          INNER JOIN POSTS
+                          ON USERS.ID = POSTS.user_id
+                          ORDER BY post_id DESC');
 $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 foreach ($allPosts as $key => $value) { ?>
 <div class="card text-center">
@@ -33,7 +37,13 @@ foreach ($allPosts as $key => $value) { ?>
       </button>
       <?php $voteSum = voteSum($pdo, $value['post_id']) ?>
       <input type="hidden" name="voteTot" value="<?php echo $_POST['voteTot'] ?>">
-      <p class="voteSums" name="voteSums"><?php echo $voteSum['voteTot'] ?></p>
+      <p class="voteSums" name="voteSums">
+        <?php if ($voteSum['voteTot'] === null) {
+        echo "0";
+      } else {
+        echo $voteSum['voteTot'];
+      }  ?>
+      </p>
       <button type="button" class="downvote" name="downvotes" data-rating="-1" value="<?php echo $value['post_id'] ?>">
       <img class="vote voteDown" src="images/downvote.svg">
       </button>
