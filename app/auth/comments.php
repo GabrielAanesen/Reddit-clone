@@ -9,7 +9,8 @@ if (isset($_POST['comment'])) {
   $id = $_SESSION['user']['ID'];
   $postId = filter_var($_POST['postId']);
   $date = date("F j, Y, g:i a");
-  $statement = $pdo->prepare('INSERT INTO COMMENTS (user_id, comment, post_id, comment_date) VALUES (:id, :comment, :postId, :comment_date)');
+  $statement = $pdo->prepare('INSERT INTO COMMENTS (user_id, comment, post_id, comment_date)
+                              VALUES (:id, :comment, :postId, :comment_date)');
   $statement->bindParam(':id', $id, PDO::PARAM_INT);
   $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
   $statement->bindParam(':comment', $comment, PDO::PARAM_STR);

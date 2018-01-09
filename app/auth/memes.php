@@ -10,7 +10,8 @@ if (isset($_POST['title'],$_POST['link'], $_POST['description'])) {
   $link = filter_var($_POST['link'], FILTER_SANITIZE_STRING);
   $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
   $date = date("F j, Y, g:i a");
-  $statement = $pdo->prepare('INSERT INTO POSTS (title, user_id, link, post_date, description) VALUES (:title, :user_id, :link, :post_date, :description)');
+  $statement = $pdo->prepare('INSERT INTO POSTS (title, user_id, link, post_date, description)
+                              VALUES (:title, :user_id, :link, :post_date, :description)');
   $statement->bindParam(':title', $title, PDO::PARAM_STR);
   $statement->bindParam(':user_id', $id, PDO::PARAM_INT);
   $statement->bindParam(':link', $link, PDO::PARAM_STR);

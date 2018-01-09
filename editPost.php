@@ -26,7 +26,7 @@ if ($post['user_id'] === $_SESSION['user']['ID']) {
   </form>
 </div>
 
-  <?php
+<?php
 }
 
 require __DIR__.'/views/footer.php'; ?>

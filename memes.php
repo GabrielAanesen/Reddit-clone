@@ -28,8 +28,15 @@ foreach ($allPosts as $key => $value) { ?>
   </div>
   <div class="card-body">
     <div class="">
-      <img class="vote voteUp" src="images/upvote.svg" data-rating="1">
-      <img class="vote voteDown" src="images/downvote.svg" data-rating="-1">
+      <button class="upvote" type="button"  name="upvotes" data-rating="1" value="<?php echo $value['post_id'] ?>">
+      <img class="vote voteUp" src="images/upvote.svg">
+      </button>
+      <?php $voteSum = voteSum($pdo, $value['post_id']) ?>
+      <input type="hidden" name="voteTot" value="<?php echo $_POST['voteTot'] ?>">
+      <p class="voteSums" name="voteSums"><?php echo $voteSum['voteTot'] ?></p>
+      <button type="button" class="downvote" name="downvotes" data-rating="-1" value="<?php echo $value['post_id'] ?>">
+      <img class="vote voteDown" src="images/downvote.svg">
+      </button>
     </div>
     <h4 class="card-title"><?php echo $value['title'];?></h4>
     <p class="card-text"><a href="<?php echo $value['link']; ?> "><?php echo $value['link']; ?></a></p>

@@ -28,7 +28,17 @@ function userInfo($pdo){
   return $user;
 };
 
-$today = date("F j, Y, g:i a"); 
+$today = date("F j, Y, g:i a");
+function voteSum($pdo, $postId){
+$statement = $pdo->prepare("SELECT sum(vote_dir)
+                            AS voteTot
+                            FROM Votes
+                            WHERE post_id=:postId");
+$statement->bindParam('postId', $postId, PDO::PARAM_INT);
+$statement->execute();
+$resultTot = $statement->fetch(PDO::FETCH_ASSOC);
+return $resultTot;
+}
 // function postInfo($pdo){
 //   $id = $_SESSION['user']['ID'];
 //   $statement = $pdo->prepare('SELECT * FROM POSTS WHERE user_id = :id');
