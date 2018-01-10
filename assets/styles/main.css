@@ -142,5 +142,22 @@
 }
 
 .vote{
-  width: 5%;
+  width: 20%;
+  fill:red;
+}
+
+.voteReg{
+  width: 3%;
+}
+
+.voteSums{
+  font-size: 17px;
+}
+
+.upCol{
+  color: red;
+}
+
+.downCol{
+  color: blue;
 }

@@ -19,10 +19,7 @@ if (isset($_POST['upvote'])) {
   $resultUpVote = $statement->fetch(PDO::FETCH_ASSOC);
 
   if ($resultUpVote) {
-    if ($resultUpVote['vote_dir'] == $voteDir) {
-     echo json_encode("nothing");
-    }
-    if ($resultUpVote['vote_dir'] == -1) {
+    if ($resultUpVote['vote_dir'] == -1 || $resultUpVote['vote_dir'] == $voteDir) {
       $neutralDir = 0;
       $statement = $pdo->prepare("UPDATE Votes
                                   SET vote_dir = :neutral
@@ -70,10 +67,7 @@ if (isset($_POST['downvote'])) {
 
 
   if ($resultDownVote) {
-    if ($resultDownVote['vote_dir'] == $voteDir) {
-     echo json_encode("nothing");
-    }
-    if ($resultDownVote['vote_dir'] == 1) {
+    if ($resultDownVote['vote_dir'] == 1 || $resultDownVote['vote_dir'] == $voteDir) {
       $neutralDir = 0;
       $statement = $pdo->prepare("UPDATE Votes
                                   SET vote_dir = :neutral

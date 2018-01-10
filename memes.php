@@ -31,23 +31,41 @@ foreach ($allPosts as $key => $value) { ?>
     Posted by: <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><?php echo $value['USERNAME'] ?></a>
   </div>
   <div class="card-body">
-    <div class="">
-      <button class="upvote" type="button"  name="upvotes" data-rating="1" value="<?php echo $value['post_id'] ?>">
-      <img class="vote voteUp" src="images/upvote.svg">
+    <?php if (!isset($_SESSION['user'])) {
+         ?> <a href="register.php"><img class="voteReg" src="images/upvote.svg"></a><?php
+    } ?>
+      <?php if (isset($_SESSION['user'])) {    ?>
+      <button class="upvote btn btn-link" type="button"  name="upvotes" data-rating="1" value="<?php echo $value['post_id'] ?>">
+        <img class="vote" src="images/upvote.svg">
       </button>
-      <?php $voteSum = voteSum($pdo, $value['post_id']) ?>
-      <input type="hidden" name="voteTot" value="<?php echo $_POST['voteTot'] ?>">
-      <p class="voteSums" name="voteSums">
+      <?php
+      }
+     $voteSum = voteSum($pdo, $value['post_id']);
+     if (isset($_SESSION['user'])) {
+        $voteDirs = voteDir($pdo, $value['post_id']);} ?>
+      <p class="voteSums font-weight-bold
+      <?php if (isset($_SESSION['user'])){
+              foreach ($voteDirs as $voteDir) {
+                if ($voteDir['vote_dir'] == 1){
+                  echo "upCol";}
+                if ($voteDir['vote_dir'] == -1){
+                  echo "downCol";}
+            }
+              } ?>" name="voteSums">
         <?php if ($voteSum['voteTot'] === null) {
-        echo "0";
-      } else {
-        echo $voteSum['voteTot'];
-      }  ?>
+          echo "0";
+          } else {
+            echo $voteSum['voteTot']; } ?>
       </p>
-      <button type="button" class="downvote" name="downvotes" data-rating="-1" value="<?php echo $value['post_id'] ?>">
-      <img class="vote voteDown" src="images/downvote.svg">
+      <?php if (!isset($_SESSION['user'])) {
+           ?> <a href="register.php">  <img class="voteReg" src="images/downvote.svg"> </a>  <?php
+      } ?>
+        <?php if (isset($_SESSION['user'])) {    ?>
+      <button class="downvote btn btn-link" type="button"  name="downvotes" data-rating="-1" value="<?php echo $value['post_id'] ?>">
+      <img class="vote" src="images/downvote.svg">
       </button>
-    </div>
+      <?php
+      } ?>
     <h4 class="card-title"><?php echo $value['title'];?></h4>
     <p class="card-text"><a href="<?php echo $value['link']; ?> "><?php echo $value['link']; ?></a></p>
     <form class="" action="comments.php" method="GET">

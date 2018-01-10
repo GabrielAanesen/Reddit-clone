@@ -40,6 +40,19 @@ $statement->execute();
 $resultTot = $statement->fetch(PDO::FETCH_ASSOC);
 return $resultTot;
 }
+
+function voteDir($pdo, $postId){
+  $userId = $_SESSION['user']['ID'];
+  $statement = $pdo->prepare("SELECT vote_dir
+                              FROM Votes
+                              WHERE post_id=:postId
+                              AND user_id=:userId");
+  $statement->bindParam('postId', $postId, PDO::PARAM_INT);
+  $statement->bindParam('userId', $userId, PDO::PARAM_INT);
+  $statement->execute();
+  $resVotDir = $statement->fetchAll(PDO::FETCH_ASSOC);
+  return $resVotDir;
+}
 // function postInfo($pdo){
 //   $id = $_SESSION['user']['ID'];
 //   $statement = $pdo->prepare('SELECT * FROM POSTS WHERE user_id = :id');
