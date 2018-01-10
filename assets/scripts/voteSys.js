@@ -17,6 +17,7 @@ Array.from(upvotes).forEach(upvote => {
 
 Array.from(upvotes).forEach(upvote => {
   upvote.addEventListener('click', () => {
+    setTimeout (function (){
     fetch(voteTot, {
       method: "POST",
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -29,12 +30,20 @@ Array.from(upvotes).forEach(upvote => {
     .then(voteSum =>{
       const postSum = upvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
+      console.log(voteSum.vote_dir);
+      if (voteSum.vote_dir == 1) {
+        postSum.style.color = '#EB3324';
+      } else  {
+        postSum.style.color = '#000000';
+      }
     })
+  },200);
   })
 });
 
 Array.from(downvotes).forEach(downvote => {
   downvote.addEventListener('click', () => {
+
     fetch(url, {
       method: "POST",
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -46,6 +55,7 @@ Array.from(downvotes).forEach(downvote => {
 
 Array.from(downvotes).forEach(downvote => {
   downvote.addEventListener('click', () => {
+        setTimeout (function (){
     fetch(voteTot, {
       method: "POST",
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -58,6 +68,14 @@ Array.from(downvotes).forEach(downvote => {
     .then(voteSum =>{
       const postSum = downvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
+      console.log(voteSum.vote_dir);
+
+      if (voteSum.vote_dir == -1) {
+        postSum.style.color = '#001FF5';
+      } else {
+        postSum.style.color = '#000000';
+      }
     })
+  },200);
   })
 });

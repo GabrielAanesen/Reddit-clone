@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require __DIR__.'/app/autoload.php';
 $postId = $_POST['post_id'];
-$statement = $pdo->prepare("SELECT sum(vote_dir)
+$statement = $pdo->prepare("SELECT vote_dir, sum(vote_dir)
                             AS voteTot
                             FROM Votes
                             WHERE post_id=:postId");
