@@ -1,3 +1,5 @@
+'use strict'
+
 const upvotes = document.querySelectorAll('.upvote');
 const downvotes = document.querySelectorAll('.downvote');
 const voteSums = document.querySelector('.voteSums');
@@ -37,7 +39,7 @@ Array.from(upvotes).forEach(upvote => {
         postSum.style.color = '#000000';
       }
     })
-  },200);
+  },100);
   })
 });
 
@@ -69,13 +71,12 @@ Array.from(downvotes).forEach(downvote => {
       const postSum = downvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
       console.log(voteSum.vote_dir);
-
       if (voteSum.vote_dir == -1) {
         postSum.style.color = '#001FF5';
       } else {
         postSum.style.color = '#000000';
       }
     })
-  },200);
+  },100);
   })
 });
