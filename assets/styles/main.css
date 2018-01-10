@@ -142,12 +142,16 @@
 }
 
 .vote{
-  width: 20%;
-  fill:red;
+  width: 30px;
+  pointer-events: none;
+}
+.upvote, .downvote{
+  width: 30px;
+  cursor: pointer; 
 }
 
 .voteReg{
-  width: 3%;
+  width: 30px;
 }
 
 .voteSums{
