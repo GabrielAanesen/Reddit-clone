@@ -32,14 +32,13 @@ Array.from(upvotes).forEach(upvote => {
     .then(voteSum =>{
       const postSum = upvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
-      console.log(voteSum.vote_dir);
       if (voteSum.vote_dir == 1) {
         postSum.style.color = '#EB3324';
       } else  {
         postSum.style.color = '#000000';
       }
     })
-  },100);
+  },200);
   })
 });
 
@@ -70,13 +69,12 @@ Array.from(downvotes).forEach(downvote => {
     .then(voteSum =>{
       const postSum = downvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
-      console.log(voteSum.vote_dir);
       if (voteSum.vote_dir == -1) {
         postSum.style.color = '#001FF5';
       } else {
         postSum.style.color = '#000000';
       }
     })
-  },100);
+  },200);
   })
 });

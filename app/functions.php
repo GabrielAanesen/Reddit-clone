@@ -53,6 +53,19 @@ function voteDir($pdo, $postId){
   $resVotDir = $statement->fetchAll(PDO::FETCH_ASSOC);
   return $resVotDir;
 }
+
+function allReplies($pdo, $commentId) {
+  $statement = $pdo->prepare("SELECT USERNAME, ID, IMAGE, reply_comment, reply_date
+                               FROM USERS INNER JOIN REPLY
+                               ON USERS.ID = REPLY.user_id
+                               WHERE comment_id = '$commentId'");
+  // $statement = $pdo->prepare("SELECT * FROM REPLY
+  //                             WHERE comment_id = '$commentId'");
+  $statement->execute();
+  $replyComment = $statement->fetchAll(PDO::FETCH_ASSOC);
+  return $replyComment;
+}
+
 // function postInfo($pdo){
 //   $id = $_SESSION['user']['ID'];
 //   $statement = $pdo->prepare('SELECT * FROM POSTS WHERE user_id = :id');
