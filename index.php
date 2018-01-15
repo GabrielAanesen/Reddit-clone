@@ -10,8 +10,7 @@
     <?php
     if (isset($_SESSION['user'])) {
       var_dump($_SESSION['user']);
-    }
-        ?>
+    } ?>
 </article>
 
 <?php require __DIR__.'/views/footer.php'; ?>

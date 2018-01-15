@@ -7,7 +7,7 @@ $myPosts2 = $myPosts->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="row">
 <div class="col-md-6">
-<div class="card" style="width: 20rem;">
+<div class="card mt-5" style="width: 30rem;">
   <?php if (!$info['IMAGE']) {
     ?> <img class="card-img-top" src="https://s3.amazonaws.com/wll-community-production/images/no-avatar.png" alt=""> <?php
   } else {
@@ -22,12 +22,10 @@ $myPosts2 = $myPosts->fetchAll(PDO::FETCH_ASSOC);
   </div>
 </div>
 </div>
-<div class="col-md-6">
-
+<div class="col-md-6 mx-auto">
 <div class="activity-feed">
   <h2>My posts</h2>
-<?php
-foreach ($myPosts2 as $key => $value) {
+<?php foreach ($myPosts2 as $key => $value) {
   ?>
   <div class="feed-item">
     <div class="date"> <?php echo $value['post_date'] ?></div>
@@ -35,12 +33,15 @@ foreach ($myPosts2 as $key => $value) {
   </div>
 
 <?php } ?>
-<p class="mt-5">
+</div>
+</div>
+<div>
+<p class="mt-5 ml-3">
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Edit settings
   </button>
 </p>
-<div class="collapse" id="collapseExample">
+<div class="collapse ml-2" id="collapseExample">
   <div class="card card-body">
     <form action="app/auth/myProfile.php" method="post">
       <div class="form-group">
@@ -71,6 +72,7 @@ foreach ($myPosts2 as $key => $value) {
   </div>
 </div>
 </div>
-</div>
+
+
 
 <?php require __DIR__.'/views/footer.php'; ?>

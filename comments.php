@@ -10,6 +10,7 @@ $commentTable = $pdo->prepare("SELECT USERNAME, IMAGE, comment, comment_date, co
                              ON COMMENTS.user_id = USERS.ID
                              WHERE post_id = :postId
                              ORDER BY comment_id DESC");
+
 $commentTable->bindParam(':postId', $postId, PDO::PARAM_INT);
 $commentTable->execute();
 $comment = $commentTable->fetchAll(PDO::FETCH_ASSOC);
@@ -57,13 +58,10 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
           <p class=""><?php echo $allComments['comment'] ?></p> <span class="date sub-text"> <?php echo $allComments['comment_date'] ?></span>
         </div>
       </li>
-
-        <?php
-        $allReplys = allReplies($pdo, $allComments['comment_id']);
-        foreach ($allReplys as $key => $value){
-          ?>
+      <?php $allReplys = allReplies($pdo, $allComments['comment_id']);
+          foreach ($allReplys as $key => $value){ ?>
           <div class="ml-5 comment">
-          <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><p><?php echo $value['USERNAME']; ?></p></a>
+            <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><p><?php echo $value['USERNAME']; ?></p></a>
             <div class="commenterImage">
               <img src="<?php
               if ($value['IMAGE']){
@@ -78,29 +76,30 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
           </div>
             <?php } ?>
             <div class="mb-2">
-            <form action="app/auth/replyComment.php" method="post">
-              <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
-              <input type="hidden" name="commentId" value="<?php echo $allComments['comment_id'] ?>">
-              <input type="text" name="comment" required>
-              <button class ="btn btn-outline-secondary" type="submit" name="button">reply to comment</button>
-            </form>
-          </div>
-              <hr>
-      <?php } ?>
-  </ul>
-<?php  if (isset($_SESSION['user'])) { ?>
-  <form class="" action="app/auth/comments.php" method="POST">
-    <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
-    <textarea type="text" name="comment" required></textarea>
-    <button class ="btn btn-outline-secondary" type="submit" name="button">Post comment</button>
-  </form>
-<?php } ?>
+              <form action="app/auth/replyComment.php" method="post">
+                <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
+                <input type="hidden" name="commentId" value="<?php echo $allComments['comment_id'] ?>">
+                <input type="text" name="comment" required>
+                <button class ="btn btn-outline-secondary" type="submit" name="button">reply to comment</button>
+              </form>
+            </div>
+            <hr>
+            <?php } ?>
+    </ul>
+    <?php  if (isset($_SESSION['user'])) { ?>
+      <form class="" action="app/auth/comments.php" method="POST">
+        <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
+        <textarea type="text" name="comment" required></textarea>
+        <button class ="btn btn-outline-secondary" type="submit" name="button">Post comment</button>
+      </form>
+    <?php } ?>
   </div>
 </div>
 
 <?php if (!isset($_SESSION['user'])){
-?><h3>Want to comment?</h3> <?php
-?><a href="register.php"> <button class="btn btn-outline-secondary" type="button" name="button">Register!</button> </a><?php
-  }
-?></div><?php
+    ?><h3>Want to comment?</h3> <?php
+    ?><a href="register.php"> <button class="btn btn-outline-secondary" type="button" name="button">Register!</button> </a>
+    <?php } ?>
+</div>
+<?php
 require __DIR__.'/views/footer.php'; ?>

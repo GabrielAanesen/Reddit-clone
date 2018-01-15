@@ -7,9 +7,7 @@
           <?php if (!isset($_SESSION['user'])): ?>
             <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/register.php' ? 'active' : ''; ?>" href="/register.php">Register</a>
           <?php endif; ?>
-
-        </li><!-- /nav-item -->
-
+        </li>
         <li class="nav-item">
             <?php if (isset($_SESSION['user'])): ?>
                 <a class="nav-link" href="/app/auth/logout.php">Logout</a>
@@ -22,5 +20,5 @@
                 <a class="nav-link" href="/myProfile.php">My profile</a>
             <?php endif; ?>
         </li>
-    </ul><!-- /navbar-nav -->
-</nav><!-- /navbar -->
+    </ul>
+</nav>

@@ -1,24 +1,22 @@
 <?php
 require __DIR__.'/views/header.php';
-if (isset($_SESSION['user'])) {
-  ?>
+if (isset($_SESSION['user'])) { ?>
   <div class="card mx-auto mb-5 text-center" style="width: 15rem;">
-  <div class="card-body">
-    <h4 class="card-title">Make a new post!</h4>
-    <a href="newPost.php"> <button type="submit" class="btn btn-primary">New post</button></a>
+    <div class="card-body">
+      <h4 class="card-title">Make a new post!</h4>
+      <a href="newPost.php"> <button type="submit" class="btn btn-primary">New post</button></a>
+    </div>
   </div>
-</div>
-<?php
-}
+<?php }
 if (!isset($_SESSION['user'])) { ?>
   <div class="card mx-auto mb-5 text-center" style="width: 15rem;">
-  <div class="card-body">
-  <h2>Want to contribute?</h2>
-  <a href="register.php"> <button class="btn btn-primary" type="button" name="button">Register!</button> </a>
-</div>
-</div>
-<?php
-}
+    <div class="card-body">
+      <h2>Want to contribute?</h2>
+      <a href="register.php"> <button class="btn btn-primary" type="button" name="button">Register!</button> </a>
+    </div>
+  </div>
+<?php }
+
 $statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id
                           FROM USERS
                           INNER JOIN POSTS
@@ -27,10 +25,10 @@ $statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id
 $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($allPosts as $key => $value) { ?>
-<div class="card text-center col-md-6 mx-auto">
-  <div class="card-header">
-    Posted by: <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><?php echo $value['USERNAME'] ?></a>
-  </div>
+  <div class="card text-center col-md-8 mx-auto">
+    <div class="card-header">
+      Posted by: <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><?php echo $value['USERNAME'] ?></a>
+    </div>
   <div class="card-body">
     <?php if (!isset($_SESSION['user'])) {
       ?> <a href="register.php"><img class="voteReg" src="images/upvote.svg"></a><?php
@@ -63,21 +61,20 @@ foreach ($allPosts as $key => $value) { ?>
       } ?>
         <?php if (isset($_SESSION['user'])) {    ?>
       <button class="downvote btn btn-link  m-0 p-0" type="button"  name="downvotes" data-rating="-1" value="<?php echo $value['post_id'] ?>">
-      <img class="vote" src="images/downvote.svg">
+        <img class="vote" src="images/downvote.svg">
       </button>
       <?php
       } ?>
-    <h4 class="card-title"><?php echo $value['title'];?></h4>
-    <p class="card-text"><a href="<?php echo $value['link']; ?> "><?php echo $value['link']; ?></a></p>
-    <form class="" action="comments.php" method="GET">
-      <a href="comments.php"><button class="btn btn-primary" type="submit" name="id" value="<?php echo $value['post_id'] ?>">Comment</button></a>
-    </form>
+      <h4 class="card-title"><?php echo $value['title'];?></h4>
+      <p class="card-text"><a href="<?php echo $value['link']; ?> "><?php echo $value['link']; ?></a></p>
+      <form class="" action="comments.php" method="GET">
+        <a href="comments.php"><button class="btn btn-primary" type="submit" name="id" value="<?php echo $value['post_id'] ?>">Comment</button></a>
+      </form>
   </div>
   <div class="card-footer text-muted">
     <?php echo $value['post_date'] ?>
-  </div>
+    </div>
 </div>
 <div class="margin"></div>
-
 <?php }
 require __DIR__.'/views/footer.php'; ?>
