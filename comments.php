@@ -48,15 +48,16 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
             echo "https://s3.amazonaws.com/wll-community-production/images/no-avatar.png";
           } ?>" />
         </div>
-        <div class="commentText">
+        <div class="commentText comment">
           <p class=""><?php echo $value['comment'] ?></p> <span class="date sub-text"> <?php echo $value['comment_date'] ?></span>
         </div>
+      </li>
+
         <?php
         $allReplys = allReplies($pdo, $value['comment_id']);
         foreach ($allReplys as $key => $value){
           ?>
-          <div class="mr-5">
-
+          <div class="ml-5 comment">
           <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><p><?php echo $value['USERNAME']; ?></p></a>
             <div class="commenterImage">
               <img src="<?php
@@ -70,18 +71,26 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
               <p class=""><?php echo $value['reply_comment'] ?></p> <span class="date sub-text"> <?php echo $value['reply_date'] ?></span>
             </div>
           </div>
+            <?php } ?>
+      <div class="showform" data-children=".item">
+        <div class="item showform">
+          <a data-toggle="collapse" data-target=".showform-<?php echo $value['comment_id'] ?>" data-parent="showform" href="showform" role="button" aria-expanded="true" aria-controls="showform">
+            Reply
+          </a>
+          <div class="collapse showform-<?php echo $value['comment_id'] ?>" role="tabpanel">
+            <p class="mb-3">
+              <form action="app/auth/replyComment.php" method="post">
+                <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
+                <input type="hidden" name="commentId" value="<?php echo $value['comment_id'] ?>">
+                <input type="text" name="comment" required>
+                <button class ="btn btn-outline-secondary" type="submit" name="button">reply to comment</button>
+              </form>
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr>
 
-            <?php
-        }
-
-        ?>
-        <form action="app/auth/replyComment.php" method="post">
-          <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
-          <input type="hidden" name="commentId" value="<?php echo $value['comment_id'] ?>">
-          <input type="text" name="comment" required>
-          <button class ="btn btn-outline-secondary" type="submit" name="button">reply to comment</button>
-        </form>
-      </li>
       <?php
     }
     ?>

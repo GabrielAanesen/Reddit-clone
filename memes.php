@@ -25,6 +25,7 @@ $statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id
                           ON USERS.ID = POSTS.user_id
                           ORDER BY post_id DESC');
 $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 foreach ($allPosts as $key => $value) { ?>
 <div class="card text-center">
   <div class="card-header">
