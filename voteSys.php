@@ -19,7 +19,7 @@ if (isset($_POST['upvote'])) {
   $resultUpVote = $statement->fetch(PDO::FETCH_ASSOC);
 
   if ($resultUpVote) {
-    if ($resultUpVote['vote_dir'] == -1 || $resultUpVote['vote_dir'] == $voteDir) {
+    if ($resultUpVote['vote_dir'] == $voteDir || $resultUpVote['vote_dir'] == -1) {
       $neutralDir = 0;
       $statement = $pdo->prepare("UPDATE Votes
                                   SET vote_dir = :neutral
@@ -32,7 +32,7 @@ if (isset($_POST['upvote'])) {
     }
     else {
       $statement = $pdo->prepare("UPDATE Votes
-                                  SET vote_dir=:vote_dir
+                                  SET vote_dir = :vote_dir
                                   WHERE user_id = :userId
                                   AND post_id = :postId");
       $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
@@ -67,7 +67,7 @@ if (isset($_POST['downvote'])) {
 
 
   if ($resultDownVote) {
-    if ($resultDownVote['vote_dir'] == 1 || $resultDownVote['vote_dir'] == $voteDir) {
+    if ($resultDownVote['vote_dir'] == $voteDir || $resultDownVote['vote_dir'] == 1 ) {
       $neutralDir = 0;
       $statement = $pdo->prepare("UPDATE Votes
                                   SET vote_dir = :neutral

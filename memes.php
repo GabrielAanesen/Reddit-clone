@@ -27,7 +27,7 @@ $statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id
 $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($allPosts as $key => $value) { ?>
-<div class="card text-center">
+<div class="card text-center col-md-6 mx-auto">
   <div class="card-header">
     Posted by: <a href="viewProfile.php?id=<?php echo $value['ID'] ?>"><?php echo $value['USERNAME'] ?></a>
   </div>

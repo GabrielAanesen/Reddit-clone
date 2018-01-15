@@ -24,7 +24,6 @@ if (isset($_POST['email'], $_POST['username'], $_POST['bio'] )) {
 if (isset($_FILES['image'])) {
   $avatar = $_FILES['image'];
   $name = $avatar['name'];
-
   move_uploaded_file($avatar['tmp_name'],"../../images/".$name);
   $id = $_SESSION['user']['ID'];
   $statement = $pdo->prepare('UPDATE users

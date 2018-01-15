@@ -33,33 +33,19 @@ Array.from(upvotes).forEach(upvote => {
     .then(voteSum =>{
       const postSum = upvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
+      if (voteSum.vote_dir == 1) {
+        postSum.style.color = "#EB3324";
+      } else  {
+        postSum.style.color = "#000000";
+      }
     })
-  },10);
-  setTimeout (function (){
-  fetch(voteDir, {
-    method: "POST",
-    headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    credentials: "include",
-    body: `post_id=${upvote.value}`
+  },200);
   })
-  .then(response =>{
-    return response.json()
-  })
-  .then(voteDirr =>{
-    const postSum = upvote.parentElement.querySelector('.voteSums');
-    if (voteDirr.vote_dir == 1) {
-      postSum.style.color = "#EB3324";
-    } else  {
-      postSum.style.color = "#000000";
-    }
-  })
-},10);
-})
 });
-
 
 Array.from(downvotes).forEach(downvote => {
   downvote.addEventListener('click', () => {
+
     fetch(url, {
       method: "POST",
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -84,26 +70,13 @@ Array.from(downvotes).forEach(downvote => {
     .then(voteSum =>{
       const postSum = downvote.parentElement.querySelector('.voteSums');
       postSum.textContent = `${voteSum.voteTot}`;
+      console.log(voteSum.vote_dir);
+      if (voteSum.vote_dir == -1) {
+        postSum.style.color = "#001FF5";
+      } else {
+        postSum.style.color = "#000000";
+      }
     })
-  },10);
-  setTimeout (function (){
-  fetch(voteDir, {
-    method: "POST",
-    headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    credentials: "include",
-    body: `post_id=${downvote.value}`
+  },200);
   })
-  .then(response =>{
-    return response.json()
-  })
-  .then(voteDirr =>{
-    const postSum = downvote.parentElement.querySelector('.voteSums');
-    if (voteDirr.vote_dir == -1) {
-      postSum.style.color = "#001FF5";
-    } else {
-      postSum.style.color = "#000000";
-    }
-  })
-},10);
-})
 });
