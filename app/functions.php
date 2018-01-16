@@ -23,6 +23,9 @@ function userInfo($pdo){
   $statement->bindParam(':id', $id, PDO::PARAM_INT);
   $statement->execute();
   $user = $statement->fetch(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
   unset($user['PASSWORD']);
   unset($user['ID']);
   return $user;
@@ -38,6 +41,9 @@ $statement = $pdo->prepare("SELECT sum(vote_dir)
 $statement->bindParam('postId', $postId, PDO::PARAM_INT);
 $statement->execute();
 $resultTot = $statement->fetch(PDO::FETCH_ASSOC);
+if (!$statement) {
+  die(var_dump($pdo->errorInfo()));
+}
 return $resultTot;
 }
 
@@ -51,6 +57,9 @@ function voteDir($pdo, $postId){
   $statement->bindParam('userId', $userId, PDO::PARAM_INT);
   $statement->execute();
   $resVotDir = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
   return $resVotDir;
 }
 
@@ -63,6 +72,9 @@ function allReplies($pdo, $commentId) {
   //                             WHERE comment_id = '$commentId'");
   $statement->execute();
   $replyComment = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
   return $replyComment;
 }
 
@@ -77,6 +89,9 @@ function allComments($pdo, $postId) {
   $commentTable->bindParam(':postId', $postId, PDO::PARAM_INT);
   $commentTable->execute();
   $comment = $commentTable->fetchAll(PDO::FETCH_ASSOC);
+  if (!$commentTable) {
+    die(var_dump($pdo->errorInfo()));
+  }
   return $comment;
 }
 
@@ -84,6 +99,9 @@ function singlePost($pdo, $postId){
   $statement = $pdo->query("SELECT * FROM POSTS
                             WHERE post_id = '$postId'");
   $post = $statement->fetch(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
   return $post;
 }
 
@@ -94,17 +112,26 @@ function allPosts($pdo){
                             ON USERS.ID = POSTS.user_id
                             ORDER BY post_id DESC');
   $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
   return $allPosts;
 }
 
 function userPosts($pdo, $id){
   $statement = $pdo->query("SELECT * FROM POSTS WHERE user_id = '$id'");
   $myPosts2 = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
   return $myPosts2;
 }
 
 function userProfile($pdo, $id){
   $statement = $pdo->query("SELECT * FROM USERS WHERE ID = '$id'");
   $userProfile = $statement->fetch(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
   return $userProfile;
 }
