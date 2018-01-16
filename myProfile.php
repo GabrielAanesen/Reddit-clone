@@ -2,8 +2,7 @@
 
 $info = userInfo($pdo);
 $id = $_SESSION['user']['ID'];
-$myPosts = $pdo->query("SELECT * FROM POSTS WHERE user_id = '$id'");
-$myPosts2 = $myPosts->fetchAll(PDO::FETCH_ASSOC);
+$myPosts2 = userPosts($pdo, $id);
 ?>
 <div class="row">
 <div class="col-md-6">
@@ -72,7 +71,5 @@ $myPosts2 = $myPosts->fetchAll(PDO::FETCH_ASSOC);
   </div>
 </div>
 </div>
-
-
 
 <?php require __DIR__.'/views/footer.php'; ?>

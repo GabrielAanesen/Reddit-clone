@@ -1,11 +1,8 @@
 <?php
 require __DIR__.'/views/header.php';
-$userID = $_GET['id'];
-$statement = $pdo->query("SELECT * FROM USERS WHERE ID = '$userID'");
-$userProfile = $statement->fetch(PDO::FETCH_ASSOC);
-$myPosts = $pdo->query("SELECT * FROM POSTS WHERE user_id = '$userID' ");
-$myPosts2 = $myPosts->fetchAll(PDO::FETCH_ASSOC);
-
+$id = $_GET['id'];
+$userProfile = userProfile($pdo, $id);
+$myPosts2 = userPosts($pdo, $id);
 ?>
 <div class="row">
   <div class="col-md-6">

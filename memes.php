@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/views/header.php';
+$allPosts = allPosts($pdo);
 if (isset($_SESSION['user'])) { ?>
   <div class="card mx-auto mb-5 text-center" style="width: 15rem;">
     <div class="card-body">
@@ -16,13 +17,6 @@ if (!isset($_SESSION['user'])) { ?>
     </div>
   </div>
 <?php }
-
-$statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id
-                          FROM USERS
-                          INNER JOIN POSTS
-                          ON USERS.ID = POSTS.user_id
-                          ORDER BY post_id DESC');
-$allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($allPosts as $key => $value) { ?>
   <div class="card text-center col-md-8 mx-auto">

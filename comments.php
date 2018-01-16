@@ -1,20 +1,8 @@
 <?php
 require __DIR__.'/views/header.php';
 $postId = $_GET['id'];
-$statement = $pdo->query("SELECT * FROM POSTS
-                          WHERE post_id = '$postId'");
-
-$commentTable = $pdo->prepare("SELECT USERNAME, IMAGE, comment, comment_date, comment_id, USERS.ID
-                             FROM COMMENTS
-                             INNER JOIN USERS
-                             ON COMMENTS.user_id = USERS.ID
-                             WHERE post_id = :postId
-                             ORDER BY comment_id DESC");
-
-$commentTable->bindParam(':postId', $postId, PDO::PARAM_INT);
-$commentTable->execute();
-$comment = $commentTable->fetchAll(PDO::FETCH_ASSOC);
-$post = $statement->fetch(PDO::FETCH_ASSOC);
+$comment = allComments($pdo, $postId);
+$post = singlePost($pdo, $postId);
 ?>
 <div class="mx-auto col-4">
 <div class="card" style="width: 20rem;">

@@ -65,3 +65,46 @@ function allReplies($pdo, $commentId) {
   $replyComment = $statement->fetchAll(PDO::FETCH_ASSOC);
   return $replyComment;
 }
+
+function allComments($pdo, $postId) {
+  $commentTable = $pdo->prepare("SELECT USERNAME, IMAGE, comment, comment_date, comment_id, USERS.ID
+                               FROM COMMENTS
+                               INNER JOIN USERS
+                               ON COMMENTS.user_id = USERS.ID
+                               WHERE post_id = :postId
+                               ORDER BY comment_id DESC");
+
+  $commentTable->bindParam(':postId', $postId, PDO::PARAM_INT);
+  $commentTable->execute();
+  $comment = $commentTable->fetchAll(PDO::FETCH_ASSOC);
+  return $comment;
+}
+
+function singlePost($pdo, $postId){
+  $statement = $pdo->query("SELECT * FROM POSTS
+                            WHERE post_id = '$postId'");
+  $post = $statement->fetch(PDO::FETCH_ASSOC);
+  return $post;
+}
+
+function allPosts($pdo){
+  $statement = $pdo->query('SELECT USERNAME, ID, title, link, post_date, post_id
+                            FROM USERS
+                            INNER JOIN POSTS
+                            ON USERS.ID = POSTS.user_id
+                            ORDER BY post_id DESC');
+  $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+  return $allPosts;
+}
+
+function userPosts($pdo, $id){
+  $statement = $pdo->query("SELECT * FROM POSTS WHERE user_id = '$id'");
+  $myPosts2 = $statement->fetchAll(PDO::FETCH_ASSOC);
+  return $myPosts2;
+}
+
+function userProfile($pdo, $id){
+  $statement = $pdo->query("SELECT * FROM USERS WHERE ID = '$id'");
+  $userProfile = $statement->fetch(PDO::FETCH_ASSOC);
+  return $userProfile;
+}
