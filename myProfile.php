@@ -42,7 +42,7 @@ $myPosts2 = userPosts($pdo, $id);
 </p>
 <div class="collapse ml-2" id="collapseExample">
   <div class="card card-body">
-    <form action="app/auth/myProfile.php" method="post">
+    <form action="app/profile/myProfile.php" method="post">
       <div class="form-group">
         <label for="email">Email</label>
         <input class="form-control" type="email" name="email" value="<?php echo $info['MAIL'] ?>" required>
@@ -60,7 +60,7 @@ $myPosts2 = userPosts($pdo, $id);
         <button type="submit" class="btn btn-primary">Update Settings</button>
       </div>
     </form>
-    <form action="app/auth/myProfile.php" method="post" enctype="multipart/form-data">
+    <form action="app/profile/myProfile.php" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="exampleFormControlFile1">image</label>
         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept=".jpg, .png">

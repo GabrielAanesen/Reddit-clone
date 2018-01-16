@@ -1,6 +1,6 @@
 <?php require __DIR__.'/views/header.php';  ?>
 
-<form action="app/auth/memes.php" method="post">
+<form action="app/posts/memes.php" method="post">
   <div class="form-group">
     <label for="exampleFormControlInput1">Title</label>
     <input type="text" class="form-control" id="exampleFormControlInput1" name="title" required>

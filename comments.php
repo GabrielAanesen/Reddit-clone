@@ -64,7 +64,7 @@ $post = singlePost($pdo, $postId);
           </div>
             <?php } ?>
             <div class="mb-2">
-              <form action="app/auth/replyComment.php" method="post">
+              <form action="app/comments/replyComment.php" method="post">
                 <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
                 <input type="hidden" name="commentId" value="<?php echo $allComments['comment_id'] ?>">
                 <input type="text" name="comment" required>
@@ -75,7 +75,7 @@ $post = singlePost($pdo, $postId);
             <?php } ?>
     </ul>
     <?php  if (isset($_SESSION['user'])) { ?>
-      <form class="" action="app/auth/comments.php" method="POST">
+      <form class="" action="app/comments/comments.php" method="POST">
         <input type="hidden" name="postId" value="<?php echo $post['post_id'] ?>">
         <textarea type="text" name="comment" required></textarea>
         <button class ="btn btn-outline-secondary" type="submit" name="button">Post comment</button>

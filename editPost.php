@@ -1,11 +1,9 @@
 <?php
 require __DIR__.'/views/header.php';
 $postId = $_GET['id'];
-
-$statement = $pdo->query("SELECT * FROM POSTS WHERE post_id = '$postId' ");
-$post = $statement->fetch(PDO::FETCH_ASSOC);
+$post = singlePost($pdo, $postId);
 if ($post['user_id'] === $_SESSION['user']['ID']) { ?>
-  <form class="" action="app/auth/editPost.php" method="post">
+  <form class="" action="app/posts/editPost.php" method="post">
     <div class="form-group">
       <label for="editTitle"> <p>Title</p></label>
       <input class="form-control" type="text" name="editTitle" value="<?php echo $post['title'] ?>">
